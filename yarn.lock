@@ -1758,6 +1758,11 @@
   "resolved" "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.5.tgz"
   "version" "15.7.5"
 
+"@types/react-native-background-timer@^2.0.0":
+  "integrity" "sha512-y5VW82dL/ESOLg+5QQHyBdsFVA4ZklENxmOyxv8o06T+3HBG2JOSuz/CIPz1vKdB7dmWDGPZNuPosdtnp+xv2A=="
+  "resolved" "https://registry.npmjs.org/@types/react-native-background-timer/-/react-native-background-timer-2.0.0.tgz"
+  "version" "2.0.0"
+
 "@types/react-native@^0.70.6":
   "integrity" "sha512-jvs5QMOrlyi0ScfT5Brha2roDoOWtbIOadNkp0jsueVen5+pH4SQAYtzL6xu0+dIcx3J/5LtZ/JYby2C1/zUug=="
   "resolved" "https://registry.npmjs.org/@types/react-native/-/react-native-0.70.8.tgz"

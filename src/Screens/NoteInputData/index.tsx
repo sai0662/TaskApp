@@ -19,11 +19,12 @@ interface NotesData {
 const NoteInputData = ({navigation}: any) => {
   const [title, setTitle] = useState('');
   const [noteDescription, setNoteDescription] = useState('');
+  const [isTypes, setIsTypes] = useState('');
 
   const [name, setName] = useState<NotesData[]>([]);
   const [description, setDescription] = useState('');
+  const [topic, setTopic] = useState('');
   const [date, setDate] = useState('');
-  const [month, setMonth] = useState();
 
   const saveNote = async () => {
     try {
@@ -47,6 +48,7 @@ const NoteInputData = ({navigation}: any) => {
       const newNote = {
         name: title,
         description: noteDescription,
+        topic: isTypes,
         date: hrs,
         month: mnth,
       };
@@ -60,6 +62,7 @@ const NoteInputData = ({navigation}: any) => {
       await AsyncStorage.setItem('@notes', JSON.stringify(parsedNotes));
       setName([]);
       setDescription('');
+      setTopic('');
       setDate('');
       navigation.navigate('notes');
     } catch (e) {
@@ -74,12 +77,21 @@ const NoteInputData = ({navigation}: any) => {
     if (value === 'note') {
       setNoteDescription(text);
     }
+    if (value === 'topic') {
+      setIsTypes(text);
+    }
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.addNotesText}>Add Notes</Text>
       <View style={styles.formView}>
+        <TextInput
+          value={isTypes}
+          onChangeText={text => handleOnChangeText(text, 'topic')}
+          placeholder="Add Topic"
+          style={styles.topicInput}
+        />
         <TextInput
           value={title}
           onChangeText={text => handleOnChangeText(text, 'title')}

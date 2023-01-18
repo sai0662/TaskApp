@@ -6,27 +6,27 @@ import {
 } from 'react-native-responsive-screen';
 
 export default StyleSheet.create({
-  container: {padding: 100, alignSelf: 'center', marginTop: 150},
+  container: {padding: hp(15), alignSelf: 'center', marginTop: hp(20)},
   calculatorButton: {
-    padding: 20,
+    padding: hp(3.2),
     backgroundColor: 'orange',
     alignSelf: 'center',
-    borderRadius: 10,
+    borderRadius: hp(1),
   },
   stopWatchButton: {
-    padding: 20,
+    padding: hp(3),
     backgroundColor: 'orange',
-    marginTop: 20,
+    marginTop: hp(3),
     alignSelf: 'center',
-    borderRadius: 10,
+    borderRadius: hp(1),
   },
   notesButton: {
-    padding: 20,
+    padding: hp(3),
     backgroundColor: 'orange',
-    marginTop: 20,
+    marginTop: hp(3),
     alignSelf: 'center',
-    width: 150,
-    borderRadius: 10,
+    width: wp(38),
+    borderRadius: hp(1),
   },
-  notesText: {alignSelf: 'center', fontSize: 20, color: 'black'},
+  notesText: {alignSelf: 'center', fontSize: hp(2.5), color: 'black'},
 });

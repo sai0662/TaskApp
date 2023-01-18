@@ -67,7 +67,6 @@ export default StyleSheet.create({
     borderWidth: hp(0.1),
     width: wp(25),
     height: hp(14),
-    //marginBottom: hp(0.1),
     elevation: hp(0.1),
     borderColor: '#C9D1CB',
   },

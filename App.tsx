@@ -16,7 +16,8 @@ import Calculator from './src/Screens/CalculatorScreen';
 import StopWatch from './src/Screens/StopWatchScreen';
 import Notes from './src/Screens/NotesScreen';
 import NoteInputData from './src/Screens/NoteInputData';
-import NoteDetails from './src/Screens/Note';
+import NoteDetails from './src/Screens/NotesDetails';
+import BackGroundTimer from './src/Screens';
 
 const Stack = createNativeStackNavigator();
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
         <Stack.Screen name="notes" component={Notes} />
         <Stack.Screen name="addnotes" component={NoteInputData} />
         <Stack.Screen name="notedetails" component={NoteDetails} />
+        <Stack.Screen name="Background" component={BackGroundTimer} />
       </Stack.Navigator>
     </NavigationContainer>
   );

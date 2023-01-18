@@ -23,6 +23,7 @@ interface Names {
   description: string;
   date: string;
   month: string;
+  topic: string;
 }
 
 const Notes = ({navigation}: any) => {
@@ -61,26 +62,6 @@ const Notes = ({navigation}: any) => {
         placeholder="Search note.."
         value={text}
       />
-      {/* <View style={styles.notesView}>
-        {notes.map((note, index) => (
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate('notedetails', {
-                name: note.name,
-                description: note.description,
-              })
-            }
-            key={index}
-            style={styles.noteView}>
-            <View style={styles.dateView}>
-              <Text style={styles.dateText}>{note.date}</Text>
-              <Text style={styles.monthText}>{note.month}</Text>
-            </View>
-            <Text style={styles.notesNameText}>{note.name}</Text>
-            <Text style={styles.notesNameText}>{note.description}</Text>
-          </TouchableOpacity>
-        ))}
-      </View> */}
       <View style={styles.notesView}>
         <FlatList
           data={notes}
@@ -88,31 +69,28 @@ const Notes = ({navigation}: any) => {
           renderItem={({item, index}) => {
             return (
               <TouchableOpacity
-                style={{
-                  width: wp(47.4),
-                  height: hp(28),
-                  padding: hp(2),
-                  marginLeft: wp(2.4),
-                  marginTop: hp(1.4),
-                  backgroundColor: '#E1C16E',
-                  borderRadius: hp(3),
-                }}
+                style={styles.noteView}
                 onPress={() =>
                   navigation.navigate('notedetails', {
                     name: item.name,
                     description: item.description,
                   })
                 }>
+                <View style={styles.notesTopicView}>
+                  <Text numberOfLines={1} style={styles.notesTopicText}>
+                    {item.topic}
+                  </Text>
+                </View>
                 <View style={styles.dateView}>
                   <Text style={styles.dateText}>{item.date}</Text>
                   <Text style={styles.monthText}>{item.month}</Text>
                 </View>
-                <View style={{flex: 1}}>
+                <View style={styles.notesNameView}>
                   <Text numberOfLines={2} style={styles.notesNameText}>
                     {item.name}
                   </Text>
                 </View>
-                <View style={{flex: 4}}>
+                <View style={styles.noteDescriptionView}>
                   <Text numberOfLines={7} style={styles.notesDescriptionText}>
                     {item.description}
                   </Text>

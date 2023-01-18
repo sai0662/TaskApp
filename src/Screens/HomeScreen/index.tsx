@@ -21,6 +21,11 @@ const HomeScreen = ({navigation}: any) => {
         onPress={() => navigation.navigate('notes')}>
         <Text style={styles.notesText}>Notes</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.notesButton}
+        onPress={() => navigation.navigate('Background')}>
+        <Text style={styles.notesText}>BackgrndTimer</Text>
+      </TouchableOpacity>
     </View>
   );
 };
