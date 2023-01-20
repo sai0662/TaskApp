@@ -1,9 +1,17 @@
+/* eslint-disable no-lone-blocks */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect} from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {
+  Animated,
+  Easing,
+  FlatList,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {CountdownCircleTimer} from 'react-native-countdown-circle-timer';
-// import BackgroundTimer from 'react-native-background-timer';
+import Timer from 'react-native-background-timer-android';
 import styles from './styles';
 
 interface Lap {
@@ -19,6 +27,7 @@ const StopWatch = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [newLaps, setNewLaps] = useState<Lap[]>([]);
   const [isStartClicked, setIsStartClicked] = useState(false);
+  const [rotate, setRotate] = useState(true);
 
   const onStart = () => {
     setStop(false);
@@ -64,28 +73,59 @@ const StopWatch = () => {
   });
 
   const lapsRecord = () => {
-    setNewLaps([
-      ...newLaps,
-      {
-        hours: hours,
-        minutes,
-        seconds,
-      },
-    ]);
+    if (!stop) {
+      setNewLaps([
+        ...newLaps,
+        {
+          hours: hours,
+          minutes,
+          seconds,
+        },
+      ]);
+    }
   };
   console.log(newLaps);
 
   return (
     <View style={styles.container}>
       <View style={styles.animationView}>
-        <CountdownCircleTimer
-          isPlaying={isPlaying}
-          duration={seconds < 60 ? 60 : 60}
-          colors={['#004777', '#F7B801', '#A30000', '#A30000']}
-          size={130}
-          colorsTime={[7, 5, 2, 0]}>
-          {({remainingTime}) => <Text>{remainingTime}</Text>}
-        </CountdownCircleTimer>
+        <View
+          style={{
+            width: 120,
+            borderWidth: 5,
+            height: 120,
+            borderRadius: 60,
+            borderColor: 'orange',
+            marginLeft: 10,
+          }}>
+          {rotate && (
+            <View
+              style={{
+                width: 1,
+                height: 110,
+                borderWidth: 2,
+                position: 'absolute',
+                marginLeft: 52,
+                marginTop: 0,
+                backgroundColor: 'orange',
+                borderColor: 'orange',
+                transform: seconds
+                  ? [{rotate: `${seconds}deg`}]
+                  : [{rotate: '180deg'}],
+              }}>
+              <View
+                style={{
+                  width: 8,
+                  height: 56,
+                  backgroundColor: '#f8f6f0',
+                  alignSelf: 'center',
+                  borderRadius: 1,
+                  marginTop: 52,
+                }}
+              />
+            </View>
+          )}
+        </View>
       </View>
       <View style={styles.timerView}>
         <Text style={styles.timerText}>
@@ -95,23 +135,26 @@ const StopWatch = () => {
         </Text>
       </View>
       <View style={styles.lapsView}>
-        <View style={styles.secondLapsView}>
-          {newLaps.map((lap, index) => (
-            <View style={styles.lapView}>
-              <View style={styles.indexView}>
-                <Text style={styles.indexText}>{index + 1}</Text>
+        <FlatList
+          data={newLaps}
+          renderItem={({item, index}) => {
+            return (
+              <View style={styles.lapView}>
+                <View style={styles.indexView}>
+                  <Text style={styles.indexText}>{index + 1}</Text>
+                </View>
+                <View style={styles.lapTimerView}>
+                  <Text style={styles.lapTimerText}>
+                    {item.hours < 10 ? '0' + item.hours : item.hours}:
+                    {item.minutes < 10 ? '0' + item.minutes : item.minutes}:
+                    {item.seconds < 10 ? '0' + item.seconds : item.seconds}
+                  </Text>
+                </View>
+                <View style={styles.borderLineView} />
               </View>
-              <View style={styles.lapTimerView}>
-                <Text style={styles.lapTimerText}>
-                  {`${lap.hours < 10 ? '0' + lap.hours : lap.hours} : ${
-                    lap.minutes < 10 ? '0' + lap.minutes : lap.minutes
-                  } : ${lap.seconds < 10 ? '0' + lap.seconds : lap.seconds}`}
-                </Text>
-              </View>
-              <View style={styles.borderLineView} />
-            </View>
-          ))}
-        </View>
+            );
+          }}
+        />
       </View>
       <View style={styles.buttonsView}>
         <View style={styles.buttonView}>
@@ -137,3 +180,25 @@ const StopWatch = () => {
 };
 
 export default StopWatch;
+
+{
+  /* <View style={styles.lapsView}>
+        <View style={styles.secondLapsView}>
+          {newLaps.map((lap, index) => (
+            <View style={styles.lapView}>
+              <View style={styles.indexView}>
+                <Text style={styles.indexText}>{index + 1}</Text>
+              </View>
+              <View style={styles.lapTimerView}>
+                <Text style={styles.lapTimerText}>
+                  {`${lap.hours < 10 ? '0' + lap.hours : lap.hours} : ${
+                    lap.minutes < 10 ? '0' + lap.minutes : lap.minutes
+                  } : ${lap.seconds < 10 ? '0' + lap.seconds : lap.seconds}`}
+                </Text>
+              </View>
+              <View style={styles.borderLineView} />
+            </View>
+          ))}
+        </View>
+      </View> */
+}

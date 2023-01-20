@@ -27,7 +27,7 @@ interface Names {
 }
 
 const Notes = ({navigation}: any) => {
-  const [text, onChangeText] = React.useState('');
+  const [text, onChangeText] = React.useState('Search note...');
 
   const [notes, setNotes] = useState<Names[]>([]);
 
@@ -59,7 +59,7 @@ const Notes = ({navigation}: any) => {
       <TextInput
         style={styles.input}
         onChangeText={onChangeText}
-        placeholder="Search note.."
+
         value={text}
       />
       <View style={styles.notesView}>
@@ -91,7 +91,7 @@ const Notes = ({navigation}: any) => {
                   </Text>
                 </View>
                 <View style={styles.noteDescriptionView}>
-                  <Text numberOfLines={7} style={styles.notesDescriptionText}>
+                  <Text numberOfLines={5} style={styles.notesDescriptionText}>
                     {item.description}
                   </Text>
                 </View>

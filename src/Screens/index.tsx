@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-shadow */
+/* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React, {useState, useEffect, useRef, useCallback} from 'react';
 import {
   View,
   Text,
@@ -10,47 +11,32 @@ import {
   NativeAppEventEmitter,
   Platform,
 } from 'react-native';
-import BackgroundTimer from 'react-native-background-timer';
-
+import Timer from 'react-native-background-timer-android';
 function BackGroundTimer() {
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(0);
-  const [hours, setHours] = useState(0);
-  const [start, setStart] = useState(true);
 
   const onStart = () => {
-    var timeoutId = 0;
-    timeoutId = BackgroundTimer.setInterval(() => {
-      if (start) {
+    var timer = 0;
+    if (true) {
+      timer = Timer.setInterval(() => {
         setSeconds(seconds => {
           setSeconds(seconds + 1);
+          console.log(seconds);
           if (seconds === 59) {
-            setSeconds(0);
             setMinutes(minutes => {
               setMinutes(minutes + 1);
-              if (minutes === 59) {
-                setMinutes(0);
-              }
             });
-            setHours(hours => {
-              setHours(hours + 1);
-              if (hours === 59) {
-                setHours(0);
-              }
-            });
+            setSeconds(0);
           }
         });
-      }
-      console.log('tic');
-    }, 1);
+      }, 100);
+    }
   };
-
   return (
     <View>
       <Text style={{alignSelf: 'center', fontSize: 30, marginTop: 80}}>
-        {hours < 10 ? '0' + hours : hours}:
-        {minutes < 10 ? '0' + minutes : minutes}:
-        {seconds < 10 ? '0' + seconds : seconds}
+        {minutes}:{seconds}
       </Text>
       <TouchableOpacity
         onPress={onStart}

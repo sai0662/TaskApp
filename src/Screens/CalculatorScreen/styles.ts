@@ -10,7 +10,7 @@ export default StyleSheet.create({
     flex: 1,
   },
   result: {
-    backgroundColor: 'orange',
+    backgroundColor: '#d0a35a',
     flex: 2,
     alignItems: 'flex-end',
   },
@@ -60,8 +60,10 @@ export default StyleSheet.create({
   firstRow: {
     width: wp(25),
     height: hp(14.6),
+    borderWidth: hp(0.1),
     elevation: hp(0.1),
     borderColor: '#C9D1CB',
+    shadowColor: 'orange',
   },
   secondRow: {
     borderWidth: hp(0.1),
@@ -69,6 +71,7 @@ export default StyleSheet.create({
     height: hp(14),
     elevation: hp(0.1),
     borderColor: '#C9D1CB',
+    shadowColor: 'rgb(139, 64, 0)',
   },
   thirdRow: {
     borderWidth: hp(0.1),
@@ -77,6 +80,7 @@ export default StyleSheet.create({
     marginBottom: hp(1),
     elevation: hp(0.1),
     borderColor: '#C9D1CB',
+    shadowColor: 'orange',
   },
   fourthRow: {
     borderWidth: hp(0.1),
@@ -85,6 +89,7 @@ export default StyleSheet.create({
     marginBottom: hp(1.8),
     elevation: hp(0.1),
     borderColor: '#C9D1CB',
+    shadowColor: 'orange',
   },
   fifthRow: {
     borderWidth: hp(0.1),
@@ -93,13 +98,24 @@ export default StyleSheet.create({
     marginBottom: hp(1.6),
     elevation: hp(0.1),
     borderColor: '#C9D1CB',
+    shadowColor: 'orange',
   },
   zeroButton: {
     borderWidth: 0.9,
-    width: wp(50),
+    width: wp(25),
     height: hp(15),
     marginBottom: hp(1.6),
     elevation: hp(0.1),
     borderColor: '#C9D1CB',
+    shadowColor: 'orange',
+  },
+  equalButton: {
+    borderWidth: 0.9,
+    width: wp(25),
+    height: hp(15),
+    marginBottom: hp(1.6),
+    elevation: hp(0.1),
+    borderColor: '#C9D1CB',
+    shadowColor: 'orange',
   },
 });

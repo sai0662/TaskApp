@@ -6,7 +6,7 @@ import {
 } from 'react-native-responsive-screen';
 
 export default StyleSheet.create({
-  container: {flex: 1, backgroundColor: '#FFF5EE'},
+  container: {flex: 1, backgroundColor: '#f8f6f0'},
   animationView: {
     marginTop: 30,
     marginLeft: 140,
@@ -16,9 +16,9 @@ export default StyleSheet.create({
   lapsView: {
     borderColor: 'orange',
     width: hp(50),
-    height: hp(35),
+    height: hp(39),
     alignSelf: 'center',
-    marginTop: hp(6),
+    marginTop: hp(3),
   },
   secondLapsView: {
     flexDirection: 'row',
@@ -26,7 +26,7 @@ export default StyleSheet.create({
   },
   lapView: {
     width: wp(96),
-    height: hp(8),
+    height: hp(10),
     marginLeft: wp(3),
     marginTop: hp(3),
   },
@@ -41,13 +41,14 @@ export default StyleSheet.create({
   },
   indexText: {alignSelf: 'center', marginTop: hp(0.8), color: 'orange'},
   lapTimerView: {marginTop: hp(-4.8)},
-  lapTimerText: {fontSize: hp(3.4), marginLeft: wp(56)},
+  lapTimerText: {fontSize: hp(3.4), marginLeft: wp(62)},
   borderLineView: {
-    borderWidth: 0.2,
-    borderColor: 'orange',
+    borderWidth: 0.1,
     marginTop: 28,
     width: 440,
     marginLeft: -24,
+    elevation: hp(0.2),
+    shadowColor: 'orange',
   },
   buttonsView: {
     width: wp(100),

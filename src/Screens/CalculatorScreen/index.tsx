@@ -2,6 +2,7 @@
 /* eslint-disable no-eval */
 import React, {useState} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 import styles from './styles';
 
 const Calculator = () => {
@@ -20,8 +21,13 @@ const Calculator = () => {
   };
 
   const onOperationClick = (value: number | string) => {
+    console.log(value);
     if (value === 'AC') {
       setResults('');
+    }
+    if (value === '+/-') {
+      setResults(-Math.abs(results));
+      console.log(results);
     }
   };
 
@@ -39,6 +45,11 @@ const Calculator = () => {
               <Text style={styles.operationButton}>AC</Text>
             </TouchableOpacity>
             <TouchableOpacity
+              onPress={() => onOperationClick('+/-')}
+              style={styles.firstRow}>
+              <Text style={styles.operationButton}>+/-</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
               onPress={() => enterValue('%')}
               style={styles.firstRow}>
               <Text style={styles.operationButton}>%</Text>
@@ -48,17 +59,20 @@ const Calculator = () => {
               style={styles.firstRow}>
               <Text style={styles.operationButton}>/</Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => enterValue('*')}
-              style={styles.firstRow}>
-              <Text style={styles.operationButton}>*</Text>
-            </TouchableOpacity>
           </View>
           <View style={styles.row}>
             <TouchableOpacity
               onPress={() => enterValue(7)}
               style={styles.secondRow}>
-              <Text style={styles.number}>7</Text>
+              <Text
+                style={[
+                  styles.number,
+                  // {
+                  //   color: results ? 'black' : 'black',
+                  // },
+                ]}>
+                7
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => enterValue(8)}
@@ -71,9 +85,9 @@ const Calculator = () => {
               <Text style={styles.number}>9</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => enterValue('-')}
+              onPress={() => enterValue('*')}
               style={styles.secondRow}>
-              <Text style={styles.operationButton}>-</Text>
+              <Text style={styles.operationButton}>x</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.row}>
@@ -93,9 +107,9 @@ const Calculator = () => {
               <Text style={styles.number}>6</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => enterValue('+')}
+              onPress={() => enterValue('-')}
               style={styles.thirdRow}>
-              <Text style={styles.operationButton}>+</Text>
+              <Text style={styles.operationButton}>-</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.row}>
@@ -115,9 +129,9 @@ const Calculator = () => {
               <Text style={styles.number}>3</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => enterValue('=')}
+              onPress={() => enterValue('+')}
               style={styles.fourthRow}>
-              <Text style={styles.number}>=</Text>
+              <Text style={styles.number}>+</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.row}>
@@ -130,6 +144,11 @@ const Calculator = () => {
               onPress={() => enterValue('.')}
               style={styles.zeroButton}>
               <Text style={styles.number}>.</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => enterValue('=')}
+              style={styles.equalButton}>
+              <Text style={styles.number}>=</Text>
             </TouchableOpacity>
           </View>
         </View>
